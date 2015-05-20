@@ -1,4 +1,4 @@
-package com.nickboy.cc150.chapter1
+package com.nickboy.cc150.chapter1;
 
 import java.util.Arrays;
 /**
@@ -9,7 +9,7 @@ import java.util.Arrays;
 //  O(1) space, O(nlogn) time, sort two strings then do the comparison
 public class Question3_1 {
 	public boolean permutation(String s, String t){
-		if(s.length != t.length)
+		if(s.length() != t.length())
 			return false;
 		return sort(s).equals(sort(t));
 	}
