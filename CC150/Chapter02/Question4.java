@@ -65,6 +65,32 @@ public class Question4 {
   		LinkedListNode afterStart = null;
 
   		//split linked list
+  		while (node != null) {
+  			LinkedListNode next = node.next;
+  			if (node.data < x) {
+  				//insert the node ahead of before.
+  				node.next = beforeStart;
+  				beforeStart = node;
+  			} else {
+  				node.next = afterStart;
+  				afterStart = node;
+  			}
+  			node = next;
+  		}
+
+  		//merge before and after lists
+  		if (beforeStart == null) {
+  			return afterStart;
+  		}
+  		//Have to reach the end of beforeStart list 
+  		//since we do not have another pointer to maintain the last element in the list.
+  		LinkedListNode head = beforeStart;
+  		whiel (beforeStart.next != null) {
+  			beforeStart = beforeStart.next;
+  		}
+  		beforeStart.next = afterStart;
+  		return head;
+
   	}
 
 
