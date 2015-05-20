@@ -1,4 +1,4 @@
-package com.nickboy.cc150.chapter1
+package com.nickboy.cc150.chapter1;
 
 /**
  * Implement an algorithm to determine if a string has all unique characters.

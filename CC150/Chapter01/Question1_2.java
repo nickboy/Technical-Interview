@@ -1,4 +1,4 @@
-package com.nickboy.cc150.chapter1
+package com.nickboy.cc150.chapter1;
 
 /**
  * Implement an algorithm to determine if a string has all unique characters.
@@ -7,7 +7,7 @@ package com.nickboy.cc150.chapter1
  */
 //      use bit vector which can reduce space to 1/8.
 
-public class Question1-2 {
+public class Question1_2 {
 	public boolean isUniqueChars(String str){
 		if (str.length() > 256) return false;
 

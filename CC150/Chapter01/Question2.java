@@ -1,4 +1,4 @@
-package com.nickboy.cc150.chapter1
+package com.nickboy.cc150.chapter1;
 
 /**
  * Implement a function void reverse(String str) which reverses a
