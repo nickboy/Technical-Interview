@@ -60,6 +60,13 @@ public class Question4 {
   		return beforeStart;
   	}
 
+  	public LinkedListNode partitionWithTwoPointer(LinkedListNode node, int x) {
+  		LinkedListNode beforeStart = null;
+  		LinkedListNode afterStart = null;
+
+  		//split linked list
+  	}
+
 
 
 }
