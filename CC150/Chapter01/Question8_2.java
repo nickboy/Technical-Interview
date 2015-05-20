@@ -1,16 +1,15 @@
-package com.nickboy.cc150.chapter2;
+package com.nickboy.cc150.chapter1;
 
 /**
- * Write code to remove duplicates from an unsorted linked list.
- * 
- * FOLLOW UP
- * 
- * How would you solve this problem if a temporary buffer is not allowed?
+ * Assume you have a method isSubString which checks if one word is substring of
+ * another. Given two strings, s1 and s2, write code to check if s2 is a
+ * rotation of s1 using only one call to isSubstring (e.g., "waterbottle" is a
+ * rotation of "erbottlewat")
  * 
  */
 
 
-public class Question1 {
+public class Question8_2 {
 	//use a dummy node previous to record previous node.
 	//if the node already exists in hashtable, change the previous link to point to next node.
 	//space O(n), time O(n)
