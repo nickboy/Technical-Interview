@@ -16,7 +16,7 @@ import java.util.Stack;
  */
 //  O(2^n) space, O(2^n) time
 
-
+//class Question4 means class tower
 
 public class Question4 {
 
@@ -39,13 +39,13 @@ public class Question4 {
 		}
 	}
 
-	public void moveTopTo(Tower t) {
+	public void moveTopTo(Question4 t) {
 		int top = disks.pop();
 		t.add(top);
-		System.out.pritnln("Move disk " + top + " from " + index() + " to " + t.index());
+		System.out.println("Move disk " + top + " from " + index() + " to " + t.index());
 	}
 
-	public void moveDisks(int n, Tower destination, Tower buffer) {
+	public void moveDisks(int n, Question4 destination, Question4 buffer) {
 		if (n > 0) {
 			moveDisks(n-1, buffer, destination);
 			moveTopTo(destination);
