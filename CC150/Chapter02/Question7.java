@@ -30,7 +30,7 @@ public class Question7 {
  			slow = slow.next;
  			fast = fast.next.next;
  		}
-
+ 		//the number of list is odd, skip the middle one.
  		if (fast != null) {
  			slow = slow.next;
  		}
@@ -45,9 +45,41 @@ public class Question7 {
  			slow = slow.next;
  		}
  		return true;
-
-
  	}
 
+ 	
+ 	//for recursive approach
+	public static class Result {
+		public LinkedListNode node;
+		public boolean result;
+	}
+
+ 	Result isPalindromeRecurse(LinkedListNode head, int length) {
+
+ 		//if number of nodes is less then 3, do the comparison directly.
+ 		if (head == null || length == 0) {
+ 			return new Result(null, true);
+ 		} else if (length == 1) {
+ 			return new Result(head.next,true);
+ 		} else if (length == 2) {
+ 			return new Result(head.next.next,
+ 				head.data == head.next.data);
+ 		}
+
+ 		Result res = isPalindromeRecurse(head.next, length - 2);
+ 		if (!res.result || res.node == null) {
+ 			return res;
+ 		} else {
+ 			res.result = (head.data == res.node.data);
+ 			res.node = res.node.next;
+ 			return res;
+ 		}
+ 	}
+
+ 	boolean isPalindrome (LinkedListNode head) {
+ 		Result p = isPalindromeRecurse(head, listSize(head));
+ 		return p.result;
+ 	}
 
 }
+
