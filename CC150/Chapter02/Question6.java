@@ -27,14 +27,33 @@ public class Question6 {
  		LinkedListNode fast = head;
  		LinkedListNode slow = head;
 
- 		Stack<Integer> stack = new Stack<Integer>();
-
 
  		while(fast != null && fast.next != null) {
- 			stack.push(slow.data);
  			slow = slow.next;
  			fast = fast.next.next;
+ 			//slow and fast meet somewhere in the loop
+ 			if (slow == fast) {
+ 				break;
+ 			}
  		}
+
+ 		//check if slow and fast meet or not.
+ 		//if no, there is no loop.
+ 		//if yes, there is a loop.
+ 		//check if fast reached the end of the list.
+ 		if (fast == null || fast.next == null) {
+ 			return null;
+ 		}
+
+ 		//move slow to the head
+ 		slow = head;
+ 		//move fast and slow in same speed.
+ 		while(slow !=fast){
+ 			slow = slow.next;
+ 			fast = fast.next;
+ 		}
+ 		return fast;
+
  	}
 
 
