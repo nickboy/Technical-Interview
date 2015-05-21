@@ -9,7 +9,7 @@ package com.nickboy.cc150.chapter1;
  */
 //  O(n) space, O(n) time
 public class Question4_2 {
-	public void replaceSpaces(char[] str, int length) {
+	public void replaceSpaces(char[] input, int length) {
 		int pos = input.length - 1;
 		for (int i = length - 1; i >= 0; i--) {
 			if (input[i] == ' ') {

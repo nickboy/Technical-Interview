@@ -12,7 +12,7 @@ public class Question3_2 {
 	public boolean permutation(String s, String t) {
 		if(s.length() != t.length())
 			return false;
-		char[] table = new char[256];
+		char[] letters = new char[256];
 
 		char[] s_array = s.toCharArray();
 		//count the number for each character in s.
