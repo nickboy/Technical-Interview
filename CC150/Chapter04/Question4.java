@@ -45,6 +45,35 @@ public class Question4 {
 		return lists;
 	}
 
+	//iterative version
+	ArrayList<LinkedList<TreeNode>> createLevelLinkedListIterative(TreeNode root) {
+		ArrayList<LinkedList<TreeNode>> result = new ArrayList<LinkedList<TreeNode>>();
+
+		//visit root node
+		LinkedList<TreeNode> current = new LinkedList<TreeNode>();
+
+		if (root != null) {
+			current.add(root);
+		}
+
+		while (current.size() >0) {
+			result.add(current); //add current level
+
+			LinkedList<TreeNode> parents = current; //go to next level
+			current = new LinkedList<TreeNode>();
+			for (TreeNode parent :parents) {
+				//visit child node
+				if (parent.left != null) {
+					current.add(parent.left);
+				}
+				if (parent.right != null) {
+					current.add(parent.right);
+				}
+			}
+		}
+
+		return result;
+	}
 
 }
 
