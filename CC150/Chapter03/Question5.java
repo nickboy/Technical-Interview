@@ -6,6 +6,8 @@ import java.util.Stack;
  * Implement a class which implements a queue using two stacks.
  */
 // O(n) space, O(n) time
+// use a shfitStacks method which make sure oldStack has element to pop or peek.
+// add element  
 
 public class Question5<T> {
 	Stack<T> stackNewest, stackOldest;
