@@ -46,6 +46,7 @@ public class Question7 {
 		private int order = 0; //timestamp
 
 		public void enqueue(Animal a) {
+			//use order to determine the sequence
 			a.setOrder(order);
 			order++;
 
@@ -56,6 +57,7 @@ public class Question7 {
 		}
 
 		public Animal dequeueAny() {
+			//if one of them is empty, poll another one.
 			if (dogs.size() == 0) {
 				return cats.poll();
 			} else if (cats.size() == 0) {
@@ -65,6 +67,7 @@ public class Question7 {
 			Dog dog = dogs.peek();
 			Cat cat = cats.peek();
 
+			//check which one is oldest
 			if (dog.isOlderThan(cat))
 				return dog.poll();
 			else
@@ -92,7 +95,5 @@ public class Question7 {
 			super(n);
 		}
 	}
-
-
 }
 
