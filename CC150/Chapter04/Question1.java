@@ -8,7 +8,7 @@ import java.util.Stack;
  * heights of the two subtrees of any node never differ by more than one.
  * 
  */
-// O(1) space, O(n) time
+// O(N) space, O(logn) time
 
 public class Question1 {
 
