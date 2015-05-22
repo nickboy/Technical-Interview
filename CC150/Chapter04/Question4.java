@@ -5,10 +5,12 @@ import java.util.LinkedList;
 
 
 /**
- * Given a sorted (increasing order) array, write an algorithm to create a
- * binary search tree with minimal height.
+ * Given a binary search tree, design an algorithm which creates a linked list
+ * of all the nodes at each depth (e.g., if you have a tree with depth D, you'll
+ * have D linked lists).
  * 
  */
+// O(n) space, O(1) time
 public class Question4 {
 
 	public static class TreeNode {
