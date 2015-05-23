@@ -11,43 +11,48 @@ import java.util.LinkedList;
  * 
  */
 // O(1) space, O(n) time
-public class Question5 {
+public class Question6 {
 
 	public static class TreeNode {
 		int val;
 		TreeNode left;
 		TreeNode right;
+		TreeNode parent;
 
 		TreeNode(int x) {
 			val = x;
 		}
 	}
 
-	//recursive approach
-	boolean checkBST(TreeNode n) {
-		return checkBST(n, Integer.MIN_VALUE, Integer.MAX_VALUE);
-	}
+	public TreeNode inorderSucc(TreeNode n) {
+		if (n == null)
+			return null;
 
-	boolean checkBST(TreeNode n, int min, int max) {
-		if (n == null) return true;
-		if (n.val > max || n.val < min) return false;
-
-		if (!checkBST(n.left, min, n.val) || !checkBST(n.right, n.val, max)) {
-			return false;
-		}
-		return true;
-	}
-
-	//another style
-	private boolean validate(TreeNode node, int min, int max) {
-		if (node == null) {
-			return true;
-		}
-		if (min < node.val && node.val < max) {
-			return validate(node.left, min, node.val) && validate(node.right, node.val, max);
+		//n is root or n has right subtree, just return left most children in right subtree.
+		if (n.parent == null || n.right != null) {
+			return leftMostChild(n.right);
 		} else {
-			return false;
+
+			TreeNode q = n;
+			TreeNode x = q.parent;
+			while (x != null && x.left != q) {
+				q = x;
+				x = x.parent;
+			}
+
+			return x;
 		}
-	} 
+	}
+
+	public TreeNode leftMostChild(TreeNode n) {
+		if (n == null)
+			return null;
+		while (n.left != null) {
+			n= n.left;
+		}
+		return n;
+	}
+
+
 }
 
