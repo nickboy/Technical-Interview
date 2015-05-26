@@ -32,7 +32,7 @@ public class Question6 {
 		if (n.parent == null || n.right != null) {
 			return leftMostChild(n.right);
 		} else {
-
+			//if no right subtree, go back to parent, find his parent.
 			TreeNode q = n;
 			TreeNode x = q.parent;
 			while (x != null && x.left != q) {
