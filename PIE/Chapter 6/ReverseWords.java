@@ -1,8 +1,8 @@
 package com.nickboy.pie.chapter6;
-import java.util.HashMap;
 
 
-class RemoveChars {
+
+class ReverseWords {
 	public static String removeChars( String str, String remove ) {
 		char[] s = str.toCharArray();
 		char[] r = remove.toCharArray();
