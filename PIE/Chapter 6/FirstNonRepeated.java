@@ -30,7 +30,7 @@ class FirstNonRepeated {
 		return null;
 	}
 
-	public static String firstNonRepeated( String str ) {
+	public static String firstNonRepeatedVer2( String str ) {
 		HashMap<Integer, Object> charHash = new HashMap<Integer, Object>();
 		Object seenOnce = new Object(), seenMultiple = new Object();
 		Object seen;
