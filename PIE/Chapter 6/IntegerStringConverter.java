@@ -38,11 +38,12 @@ class IntegerStringConverter {
 			isNeg = true;
 		}
 
-		while( num != 0 ) {
+		do {
 			temp[i++] = (char) ((num% 10) + '0');
 			num /= 10;
-		}
-		StringBuilder b = new StringBuilder();
+		} while( num != 0 );
+
+ 		StringBuilder b = new StringBuilder();
 		if( isNeg )
 			b.append( '-' );
 		//start from the end
