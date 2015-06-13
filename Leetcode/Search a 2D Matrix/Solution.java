@@ -1,4 +1,4 @@
-//Time : O(m * nlogn), m = number of rows, n = number of element in each list
+//Time : O(nlogm), m = number of rows, n = number of element in each list
 //Space: O(1)
 public class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
