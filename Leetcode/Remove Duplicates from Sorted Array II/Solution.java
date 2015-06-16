@@ -16,6 +16,7 @@ public class Solution {
                 // then move to next element
                 if (occur >= 2) {
                     cur++;
+                    //skip the swap and moving pointers.
                     continue;
                 } else {
                     // Found the duplicate at very first time.
@@ -33,5 +34,11 @@ public class Solution {
             cur++;
         }
         return pre;
+    }
+
+    public void main() {
+        Solution sol = new Solution;
+        int[] nums = [1,1,1,2,2,3];
+        sol.removeDuplicates(nums);
     }
 }
