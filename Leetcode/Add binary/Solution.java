@@ -1,6 +1,6 @@
 public class Solution {
     public String addBinary(String a, String b) {
-    	StringBuilder str = new StringBuilder();
+    	StringBuilder str = new StringBuilder()Isomorphic Strings ;
         int totalLen = Math.max(a.length(), b.length())+1;
         int carry = 0;
         int valA = 0;
