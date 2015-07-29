@@ -15,6 +15,9 @@ public class Solution {
         // 靠這個位元來決定每個數要放到哪個group
         // 等於轉成兩個2n+1的問題來解
         // 之後把這兩個值加到list回傳即可
+        // result & (result - 1) 會把最後一個1去掉
+        // 再用result去減可以得到最後一個1
+        // 接著直接去比這個bit即可
         int lastBit = result - (result & (result - 1));
         int group1 = 0;
         int group2 = 0;
