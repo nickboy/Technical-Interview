@@ -20,11 +20,11 @@ public class Solution {
         }
         
         for (DirectedGraphNode node : nodes) {
-            int parent = find(node.label);
+            int parent = find(node);
             for (DirectedGraphNode neighbor : node.neighbors) {
-                int parentNeighbor = find(neighbor.label);
+                int parentNeighbor = find(neighbor);
                 if (parent != parentNeighbor) {
-                    union(node.label, neighbor.label);
+                    union(node, neighbor);
                 }
             }
         }
@@ -52,13 +52,12 @@ public class Solution {
     
     // 利用整理好的map，來產出正確的結果
     // 1.歷遍原本的map，來建立另一個set的mapping (resMap) key為father，value為該component的集合
-    // 2.再把hashmap中的每個value拿出來sort完之後存到result裡
-    // 3.直接返回result即可
+    // 2.
     private List<List<Integer>> print(ArrayList<DirectedGraphNode> nodes) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        HashMap<Integer, List<Integer>> resMap = new HashMap<Integer,List<Integer>>();
+        HashMap<Integer, List<Integer>> resMap = new HashMap<Integer, ArrayList<Integer>>();
         for (DirectedGraphNode node : nodes) {
-            int parent = find(node.label);
+            int parent = find(node);
             if (!resMap.containsKey(parent)) {
                 resMap.put(parent, new ArrayList<Integer>());
             }
