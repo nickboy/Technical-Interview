@@ -4,6 +4,7 @@ public class Solution {
      * @param b: The second string
      * @return true or false
      */
+    // 用hashmap作，但space要O(n)
     public boolean anagram(String s, String t) {
         if (s.length() != t.length()) {
             return false;
