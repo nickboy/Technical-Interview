@@ -11,35 +11,42 @@
  */
 public class Solution {
     /**
-     * @param ListNode head is the head of the linked list
-     * @return: ListNode head of the linked list
+     * @param ListNode head is the head of the linked list 
+     * @oaram m and n
+     * @return: The head of the reversed ListNode
      */
-    public static ListNode deleteDuplicates(ListNode head) {
-        // write your code here
-        if(head == null || head.next == null) {
+    public ListNode reverseBetween(ListNode head, int m , int n) {
+        
+        if (head == null) {
             return head;
         }
         
-        //建一個dummy且指向head，接著把head移到dummy的位置，
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         head = dummy;
         
-        //不斷的比較下一個與下下個
-        while (head.next != null && head.next.next != null) {
-            //若一樣時，先把值記下來，接著去比較值，若一樣的話，不斷的去移動head的pointer
-            if (head.next.val == head.next.next.val) {
-                int val = head.next.val;
-                while (head.next != null && head.next.val == val) {
-                    head.next = head.next.next;
-                }
-            } else {
-                //終於找到不一樣的了，則移動head去處理下一個
-                head = head.next;
+        for (int i = 1; i < m; i++) {
+            if (head == null) {
+                return null;
             }
+            head = head.next;
         }
         
+        ListNode mNode = head.next;
+        ListNode preM = head;
+        ListNode nNode = mNode;
+        ListNode postN = nNode.next;
+        for (int i = 1; i <= n - m; i++) {
+            ListNode next = postN.next;
+            postN.next = nNode;
+            nNode = postN;
+            postN = next;
+        }
+        
+        preM.next = nNode;
+        mNode.next = postN;
+        
         return dummy.next;
+        
     }
 }
-
