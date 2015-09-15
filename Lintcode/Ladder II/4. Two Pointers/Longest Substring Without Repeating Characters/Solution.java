@@ -1,28 +1,36 @@
-public class Solution {
-    /**
-     * @param s: a string
-     * @return: an integer 
-     */
-    public int lengthOfLongestSubstring(String s) {
-        if (s == null || s.length() == 0) {
-            return 0;
-        }
+public int lengthOfLongestSubstringKDistinct(String s, int k) {
         
-        int length = 0;
-        int[] map = new int[256];
-        
-        for (int i = 0, j = 0; i < s.length(); i++) {
-            
-            while (j < s.length() && map[s.charAt(j)] == 0) {
-                map[s.charAt(j)] += 1;
-                j++;
-            }
-            
-            length = Math.max(length, j - i);
-            
-            map[s.charAt(i)] -= 1;
-        }
-        
-        return length;
+    if (s == null || s.length() == 0 || k == 0) {
+        return 0;
     }
+    
+    int maxLength = 0;
+    HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+
+    for (int i = 0, j = 0; i < s.length(); i++) {
+        
+        while (j < s.length() && map.size() < k) {
+            
+            char cur = s.charAt(j);
+            if (map.containsKey(cur)) {
+                map.put(cur, map.get(cur) + 1);
+            } else {
+                map.put(cur, 1);
+            }
+            j++;
+        } 
+        
+        if (map.size() <= k) {
+            maxLength = Math.max(maxLength, j - i);    
+        }
+        
+        char charToBeDelete =  s.charAt(i);
+        if (map.get(charToBeDelete) > 1) {
+            map.put(charToBeDelete, map.get(charToBeDelete) - 1);
+        } else {
+            map.remove(charToBeDelete);
+        }
+    }
+    
+    return maxLength;
 }

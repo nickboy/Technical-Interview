@@ -1,56 +1,110 @@
 /**
- * Definition of TreeNode:
- * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
+ * Definition of ExpressionTreeNode:
+ * public class ExpressionTreeNode {
+ *     public String symbol;
+ *     public ExpressionTreeNode left, right;
+ *     public ExpressionTreeNode(String symbol) {
+ *         this.symbol = symbol;
  *         this.left = this.right = null;
  *     }
  * }
  */
+
 public class Solution {
-    /**
-     * @param A: Given an integer array with no duplicates.
-     * @return: The root of max tree.
-     */
-    public TreeNode maxTree(int[] A) {
-        if (A == null || A.length == 0) {
-            return null;
+    
+    class TreeNode {
+        public int val;
+        public String s;
+        public ExpressionTreeNode root;
+        
+        public TreeNode(int val, String ss) {
+            this.val = val;
+            this.root = new ExpressionTreeNode(ss);
         }
+    }
+    /**
+     * @param expression: A string array
+     * @return: The root of expression tree
+     */
+    public ExpressionTreeNode build(String[] expression) {
         
         Stack<TreeNode> stack = new Stack<TreeNode>();
-        stack.push(new TreeNode(A[0]));
-        
-        for (int i = 1; i < A.length; i++) {
-            if (A[i] < stack.peek().val) {
-                TreeNode node = new TreeNode(A[i]);
-                stack.push(node);
-            } else {
-                // 因是max tree，所以stack內是降序的，所以一但當前的數比stack頂端的值還大，
-                //就要不斷的pop出來，由於越在stack底部的數值一定是在陣列的左邊，所以要不斷的pop直到當前值小於stack的peek。
-                // 且每次pop，就要不斷把pop出來的值的右邊指向之前那個點
+        TreeNode root = null;
+        int val = 0;
+        Integer base = 0;
+
+        for (int i = 0; i <= expression.length; i++) {
+            
+            if (i != expression.length) {
                 
-                TreeNode n1 = stack.pop();
-                while (!stack.isEmpty() && stack.peek().val < A[i]) {
-                    
-                    TreeNode n2 = stack.pop();
-                    n2.right = n1;
-                    n1 = n2;
+                //只要遇到開頭為(，則直接把base加10，代表後面的所有值的優先權都會額外加10
+                if (expression[i].equals("(")) {
+                    base += 10;
+                    continue;
                 }
-                TreeNode node = new TreeNode(A[i]);
-                node.left = n1;
-                stack.push(node);
+                // 因已到了)的結尾，因此後面的數無需再加上額外10的優先權，把base扣10，繼續後面的運算。
+                if (expression[i].equals(")")) {
+                    base -= 10;
+                    continue;
+                }
+                
+                //得出當前值的優先權
+                val = get(expression[i], base);
             }
-        }
-        // 如果stack還有剩的話，就不斷pop出來，且因為
-        TreeNode head = stack.pop();
-        while (!stack.isEmpty()) {
-            TreeNode temp = stack.pop();
-            temp.right = head;
-            head = temp;
+            
+            //抓到當前值的優先權後，便建立一個新節點right。
+            TreeNode right = i == expression.length ?
+                new TreeNode(Integer.MIN_VALUE, "") :
+                new TreeNode(val, expression[i]);
+                
+            // 重點，對於每個點找出左右第一個比它大的，
+            // 要來建 min tree
+            while (!stack.isEmpty()) {
+                
+                // 與stack的頂值來比較，如果頁值比較大，
+                // 代表找到左邊第一個他大的數，作進一步處理
+                if (right.val <= stack.peek().val) {
+                    
+                    TreeNode nodeNow = stack.pop();
+                    
+                    // 如果stack已空了，由於是建min tree，且right的值也較小，
+                    // 且stack內的值一定在right node的左邊，所以直接把right那個節點的left指到現在這個節點nodenow即可。
+                    if (stack.isEmpty()) {
+                        right.root.left = nodeNow.root;
+                    } else {
+                        
+                        //如果stack還有節點的話，
+                        
+                        TreeNode left = stack.peek();
+                        if (left.val < right.val) {
+                            right.root.left = nodeNow.root;
+                        } else {
+                            left.root.right = nodeNow.root;
+                        }
+                    }
+                } else {
+                    break;
+                }
+               
+            }
+            
+            stack.push(right);
         }
         
-        return head;
+        return stack.peek().root.left;
+    }
+    
+    // 用來指定優先權的，值越小優先權越高，operand 權限最小，設成無限大
+    // + 與 - 其次，因此base + 1
+    int get(String a, Integer base) {
+        if (a.equals("+") || a.equals("-")) {
+            return 1 + base;
+        }
+        
+        if (a.equals("*") || a.equals("/")) {
+            return 2 + base;
+        }
+        
+        return Integer.MAX_VALUE;
     }
 }
